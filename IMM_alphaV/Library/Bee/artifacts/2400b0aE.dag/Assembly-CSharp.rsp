@@ -362,6 +362,11 @@
 "Assets/Brick Project Studio/_BPS Basic Assets/Common/Scripts and Animations/First Person Player/SceneSwitchGen.cs"
 "Assets/Brick Project Studio/_BPS Basic Assets/Common/Scripts and Animations/Windows/opencloseWindow.cs"
 "Assets/Brick Project Studio/_BPS Basic Assets/Common/Scripts and Animations/Windows/opencloseWindow1.cs"
+"Assets/Supercyan Character Pack Animal People Sample/Scripts/AccessoryLogic.cs"
+"Assets/Supercyan Character Pack Animal People Sample/Scripts/AccessoryWearLogic.cs"
+"Assets/Supercyan Character Pack Animal People Sample/Scripts/DemoFree.cs"
+"Assets/Supercyan Character Pack Animal People Sample/Scripts/FreeCameraLogic.cs"
+"Assets/Supercyan Character Pack Animal People Sample/Scripts/SimpleSampleCharacterControl.cs"
 -langversion:9.0
 /deterministic
 /optimize+
