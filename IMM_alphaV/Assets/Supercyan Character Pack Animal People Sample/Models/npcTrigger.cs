@@ -8,59 +8,98 @@ namespace SojaExiles
 {
     public class animal_people_wolf_1 : MonoBehaviour
     {
-        public Transform RegisterLocation;
-        public float proximityThreshold = 1f; // Distance threshold for when the NPC reaches the destination
+        public float proximityThreshold = 1f;
         public string requestMessage = "Can I have a burger, please?";
-        public TMP_Text uiText; // Reference to the TMP_Text component for TextMeshPro
-        public Transform playerTransform; // Reference to the player's transform
+        public TMP_Text uiText;
 
-        private NavMeshAgent npcAgent; // The NavMeshAgent component for movement
-        private bool moveToTrigger = false; // Flag to control NPC movement
+        private NavMeshAgent npcAgent;
+        private bool moveToTrigger = false;
+        private Transform playerTransform;
+        private Vector3 targetPosition;
+        private bool isInQueue = false;
+        private RegisterQueueManager queueManager;
+        private bool isRegistered = false;
 
         void Start()
         {
-            // Get the NavMeshAgent component attached to the NPC
             npcAgent = GetComponent<NavMeshAgent>();
             if (npcAgent == null)
             {
                 Debug.LogError("NavMeshAgent component not found on NPC!");
             }
 
-            // Ensure the UI text is initially empty or hidden
+            queueManager = RegisterQueueManager.Instance;
+            if (queueManager == null)
+            {
+                Debug.LogError("RegisterQueueManager not found in the scene!");
+            }
+            else if (!isRegistered && CompareTag("Customer"))
+            {
+                // Register with the queue manager if we're a customer
+                queueManager.RegisterCustomer(this);
+                isRegistered = true;
+            }
+
             if (uiText != null)
             {
                 uiText.text = "";
+            }
+
+            GameObject playerObject = GameObject.FindWithTag("Player");
+            if (playerObject != null)
+            {
+                playerTransform = playerObject.transform;
+            }
+            else
+            {
+                Debug.LogError("Player object with tag 'Player' not found!");
             }
         }
 
         void Update()
         {
-            if (moveToTrigger && npcAgent != null)
+            if (moveToTrigger && npcAgent != null && queueManager != null)
             {
-                npcAgent.SetDestination(RegisterLocation.position);
-
-                float distanceToDestination = Vector3.Distance(transform.position, RegisterLocation.position);
-                if (distanceToDestination <= proximityThreshold)
+                if (!isInQueue)
                 {
-                    moveToTrigger = false;
-                    npcAgent.ResetPath();
-                    AskForBurger();
+                    targetPosition = queueManager.GetQueuePosition(this);
+                    isInQueue = true;
+                }
+
+                npcAgent.SetDestination(targetPosition);
+
+                if (Vector3.Distance(transform.position, targetPosition) <= proximityThreshold)
+                {
+                    if (queueManager.IsFirstInQueue(this))
+                    {
+                        AskForBurger();
+                    }
                 }
             }
 
-            // Make the NPC face the player
             FacePlayer();
         }
 
-        // Public method to start the NPC movement, called by KitchenTriggerActivator
         public void StartMovingToRegister()
         {
-            moveToTrigger = true;
+            if (!moveToTrigger)
+            {
+                moveToTrigger = true;
+                Debug.Log($"Customer {gameObject.name} is moving to register");
+            }
+        }
+
+        public void UpdateQueuePosition(Vector3 newPosition)
+        {
+            targetPosition = newPosition;
+            if (npcAgent != null && moveToTrigger)
+            {
+                npcAgent.SetDestination(targetPosition);
+            }
         }
 
         void AskForBurger()
         {
-            // Display the request message in the UI
             if (uiText != null)
             {
                 uiText.text = requestMessage;
@@ -73,13 +112,23 @@ namespace SojaExiles
             if (playerTransform != null)
             {
                 Vector3 direction = (playerTransform.position - transform.position).normalized;
-                direction.y = 0; // Keep the NPC's rotation on the horizontal plane
+                direction.y = 0;
                 Quaternion lookRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f); // Smooth rotation
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
             }
-            else
+        }
+
+        public void FinishOrder()
+        {
+            if (queueManager != null)
             {
-                Debug.LogError("Player transform is not assigned!");
+                queueManager.RemoveFromQueue(this);
+                moveToTrigger = false;
+                isInQueue = false;
+                if (uiText != null)
+                {
+                    uiText.text = "";
+                }
             }
         }
     }
