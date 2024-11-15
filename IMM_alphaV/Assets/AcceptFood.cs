@@ -5,37 +5,47 @@ using TMPro;
 
 public class AcceptFood : MonoBehaviour
 {
-    public TextMeshProUGUI text;
+    [SerializeField]
+    private TextHide textHide;
+
+    [SerializeField]
+    private FoodType acceptedFoodType = FoodType.pizza;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Food")
+        if (other.gameObject.CompareTag("Food"))
         {
-            FoodType type = gameObject.GetComponent<FoodScript>().FoodType;
-
-            if (other.gameObject.GetComponent<FoodScript>().FoodType != type)
+            FoodScript foodScript = other.gameObject.GetComponent<FoodScript>();
+            if (foodScript == null)
             {
-                text.text = "FUCK OFF";
+                Debug.LogError("FoodScript component not found on the Food GameObject.");
+                return;
+            }
+
+            FoodType incomingFoodType = foodScript.FoodType;
+
+            if (incomingFoodType != acceptedFoodType)
+            {
+                textHide.ShowText("FUCK OFF");
             }
             else
             {
-                text.text = "Food accepted";
+                textHide.ShowText("Food accepted");
                 Debug.Log("Food accepted");
             }
         }
-
-        gameObject.GetComponent<FoodScript>().FoodType = FoodType.pizza;
     }
 
-    public bool acceptFood(FoodType type, GameObject heldFood) {
-        if (gameObject.GetComponent<FoodScript>().FoodType != type)
+    public bool AcceptFoodItem(FoodType type, GameObject heldFood)
+    {
+        if (type != acceptedFoodType)
         {
-            text.text = "FUCK OFF";
+            textHide.ShowText("FUCK OFF");
             return false;
         }
         else
         {
-            text.text = "Food accepted";
+            textHide.ShowText("Food accepted");
             Destroy(heldFood);
             return true;
         }

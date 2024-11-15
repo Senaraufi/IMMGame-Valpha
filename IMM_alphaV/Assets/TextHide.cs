@@ -6,6 +6,7 @@ using TMPro;
 public class TextHide : MonoBehaviour
 {
 
+    [SerializeField]
     public TextMeshProUGUI text;
     public TextMeshProUGUI pressE;
 

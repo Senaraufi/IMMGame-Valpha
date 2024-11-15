@@ -82,7 +82,7 @@ namespace SojaExiles
                 if (hit.collider.CompareTag("Customer")) {
                     var haveType = heldObject.GetComponent<FoodScript>().FoodType;
 
-                    var result = hit.collider.gameObject.GetComponent<AcceptFood>().acceptFood(haveType, heldObject);
+                    var result = hit.collider.gameObject.GetComponent<AcceptFood>().AcceptFoodItem(haveType, heldObject);
                     if (result) {
                         return;
                     }
