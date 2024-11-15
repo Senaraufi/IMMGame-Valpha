@@ -6,27 +6,49 @@ namespace SojaExiles
 {
     public class RegisterQueueManager : MonoBehaviour
     {
-        public static RegisterQueueManager Instance { get; private set; }
+        private static RegisterQueueManager _instance;
+        public static RegisterQueueManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = FindObjectOfType<RegisterQueueManager>();
+                }
+                return _instance;
+            }
+        }
         
-        public Transform registerPosition; // The main register position
-        public float spacingBetweenNPCs = 2f; // Distance between NPCs in the queue
+        [SerializeField]
+        private Transform registerPosition; // The main register position
+        [SerializeField]
+        private float spacingBetweenNPCs = 2f; // Distance between NPCs in the queue
         
         private Queue<animal_people_wolf_1> npcQueue = new Queue<animal_people_wolf_1>();
         private Dictionary<animal_people_wolf_1, Vector3> queuePositions = new Dictionary<animal_people_wolf_1, Vector3>();
         private List<animal_people_wolf_1> availableCustomers = new List<animal_people_wolf_1>();
 
-        public UnityEvent<animal_people_wolf_1> onCustomerRegistered;
+        [SerializeField]
+        private UnityEvent<animal_people_wolf_1> onCustomerRegistered;
 
         void Awake()
         {
-            if (Instance == null)
+            if (_instance == null)
             {
-                Instance = this;
+                _instance = this;
                 FindAllCustomers();
             }
-            else
+            else if (_instance != this)
             {
                 Destroy(gameObject);
+            }
+        }
+
+        void OnDestroy()
+        {
+            if (_instance == this)
+            {
+                _instance = null;
             }
         }
 
@@ -35,8 +57,10 @@ namespace SojaExiles
             GameObject[] customerObjects = GameObject.FindGameObjectsWithTag("Customer");
             foreach (GameObject customerObj in customerObjects)
             {
+                if (customerObj == null) continue;
+                
                 animal_people_wolf_1 customer = customerObj.GetComponent<animal_people_wolf_1>();
-                if (customer != null)
+                if (customer != null && !availableCustomers.Contains(customer))
                 {
                     availableCustomers.Add(customer);
                     onCustomerRegistered?.Invoke(customer);

@@ -6,11 +6,14 @@ TagManager:
   tags:
   - KitchenTrigger
   - RegisterLocation
+  - Customer
+  - Food
+  - pressE
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Pickupable
   - Water
   - UI
   - 

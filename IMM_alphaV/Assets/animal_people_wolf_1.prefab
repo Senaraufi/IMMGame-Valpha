@@ -88,6 +88,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5871397878328719866}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9312126e574e97047b72657b5431e12a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 185773859868474882}
   m_SourcePrefab: {fileID: 100100000, guid: 9312126e574e97047b72657b5431e12a, type: 3}
 --- !u!1 &6199099110320190798 stripped
 GameObject:
@@ -106,7 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40851cf579a0c7df9c7729cc2fca357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RegisterLocation: {fileID: 0}
   proximityThreshold: 1
   requestMessage: Can I have a burger, please?
   uiText: {fileID: 0}
@@ -181,3 +183,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &185773859868474882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6199099110320190798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e86b450a501aebbcad9ccbed57cae48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}

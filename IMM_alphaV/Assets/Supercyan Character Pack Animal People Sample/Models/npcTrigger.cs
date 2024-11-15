@@ -85,7 +85,6 @@ namespace SojaExiles
             if (!moveToTrigger)
             {
                 moveToTrigger = true;
-                Debug.Log($"Customer {gameObject.name} is moving to register");
             }
         }
 
@@ -103,7 +102,6 @@ namespace SojaExiles
             if (uiText != null)
             {
                 uiText.text = requestMessage;
-                Debug.Log("Request message displayed: " + requestMessage);
             }
         }
 
