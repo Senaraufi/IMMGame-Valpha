@@ -22,10 +22,7 @@ namespace SojaExiles
         {
             if(other.CompareTag("Player"))
             {
-                if(textHideScript != null)
-                {
-                    textHideScript.ShowText(triggerMessage);
-                }
+                textHideScript.ShowText(triggerMessage);
             }
         }
 
@@ -33,10 +30,7 @@ namespace SojaExiles
         {
             if(other.CompareTag("Player"))
             {
-                if(textHideScript != null)
-                {
-                    textHideScript.HideText();
-                }
+                textHideScript.HideText();
             }
         }
     }

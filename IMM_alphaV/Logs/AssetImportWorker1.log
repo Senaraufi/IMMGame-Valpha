@@ -15399,3 +15399,85 @@ AssetImportParameters requested are different than current active one (requested
   custom:scripting/precompiled-assembly-types:Assembly-CSharp: 822781f047d3cc6a9f51d73ce74be6e2 -> 
   custom:scripting/monoscript/fileName/opencloseDoor.cs: 7c3f712554e0b6a08e96f0f0294c2d30 -> 
   custom:scripting/monoscript/fileName/AcceptFood.cs: 6edcca59646725e1461630f832734b85 -> 
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.672 seconds
+Native extension for LinuxStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.296 seconds
+Domain Reload Profiling: 1968ms
+	BeginReloadAssembly (216ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (93ms)
+	RebuildCommonClasses (49ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (44ms)
+	LoadAllAssembliesAndSetupDomain (350ms)
+		LoadAssemblies (404ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (20ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (1297ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (809ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			SetLoadedEditorAssemblies (13ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (88ms)
+			ProcessInitializeOnLoadAttributes (628ms)
+			ProcessInitializeOnLoadMethodAttributes (58ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Callback registration failed. Increase kMaxCallback.
+Fatal Error! Callback registration failed. Increase kMaxCallback.
+Caught fatal signal - signo:6 code:-6 errno:0 addr:0x3e800084263
+Obtained 33 stack frames.
+#0  0x007f012ccc9d00 in __sigaction
+#1  0x007f012cd22664 in __pthread_kill_implementation
+#2  0x007f012ccc9c4e in gsignal
+#3  0x007f012ccb1902 in abort
+#4  0x00560556f4d866 in CrashDontLaunchBugReporter()
+#5  0x0056055682e9bd in EditorMonoConsole::LogToConsoleImplementation(CppLogEntry&)
+#6  0x0056055682e44a in EditorMonoConsole::LogToConsoleImplementation(DebugStringToFileData const&)
+#7  0x0056055682ffa8 in LogToConsoleImplementation(DebugStringToFileData const&)
+#8  0x00560557727418 in DebugStringToFilePostprocessedStacktrace(DebugStringToFileData const&)
+#9  0x00560557727f8b in DebugStringToFile(DebugStringToFileData const&)
+#10 0x0056055625fdda in CallbackArrayBase<void (*)(BuildTargetPlatform), void (*)(void const*, BuildTargetPlatform)>::Register(void (*)(BuildTargetPlatform), void (*)(void const*, BuildTargetPlatform), void const*)
+#11 0x00560556d97fd3 in LoadDomainAndUserAssemblies(AssemblyLoadReason)
+#12 0x005605573150ca in WorkerDomainReloadV2()
+#13 0x00560557382590 in AssetImportWorkerClient::ReloadMonoDomain(AssetResolver&)
+#14 0x0056055738b4bb in core::mutable_function<void ()>::DispatchT<IOService::PostHelper<AssetImportWorkerClient::HandleMessage(PrepareMessage const&)::$_4>(AssetImportWorkerClient::HandleMessage(PrepareMessage const&)::$_4&&, IOService::WrapCallableInFunctionTag)::{lambda()#1}>::Dispatch()
+#15 0x005605573c9884 in asio::detail::completion_handler<core::mutable_function<void ()>, asio::io_context::basic_executor_type<std::allocator<void>, 0u> >::do_complete(void*, asio::detail::scheduler_operation*, std::error_code const&, unsigned long)
+#16 0x005605573aaaa7 in asio::detail::scheduler::do_run_one(asio::detail::conditionally_enabled_mutex::scoped_lock&, asio::detail::scheduler_thread_info&, std::error_code const&)
+#17 0x005605573aa5a1 in asio::detail::scheduler::run(std::error_code&)
+#18 0x005605573aed4a in asio::io_context::run()
+#19 0x005605573aecea in IOService::Run(bool)
+#20 0x0056055737e963 in AssetImportWorkerClient::Run()
+#21 0x0056055731aa25 in RunAssetImporterV2()
+#22 0x005605569d0234 in Application::InitializeProject()
+#23 0x00560556f6c9ba in InitializeUnity(void*)
+#24 0x007f012f3460d9 in g_main_loop_run
+#25 0x007f012f33fe8c in g_main_context_prepare
+#26 0x007f012f3a1c98 in g_hmac_get_string
+#27 0x007f012f345f37 in g_main_loop_run
+#28 0x007f012bdefb35 in gtk_main
+#29 0x00560556f6c155 in main
+#30 0x007f012ccb3088 in __libc_start_call_main
+#31 0x007f012ccb314b in __libc_start_main
+#32 0x00560554fb4029 in _start

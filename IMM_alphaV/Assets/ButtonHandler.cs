@@ -13,10 +13,9 @@ namespace SojaExiles
         [SerializeField]
         private UnityEvent onButtonPressed; // Unity Event that will be triggered when button is pressed
 
-        // Optional: Add a description to make it clear in the inspector what this button does
         [SerializeField]
         [TextArea(1, 3)]
-        private string buttonDescription = "";
+        private string buttonDescription = ""; // Description for the inspector
 
         void Update()
         {
@@ -25,9 +24,7 @@ namespace SojaExiles
                 if (Camera.main != null)
                 {
                     Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-                    RaycastHit hit;
-
-                    if (Physics.Raycast(ray, out hit))
+                    if (Physics.Raycast(ray, out RaycastHit hit))
                     {
                         if (hit.transform == transform)
                         {
@@ -48,7 +45,6 @@ namespace SojaExiles
             onButtonPressed?.Invoke();
         }
 
-        // Getter for buttonId if needed from other scripts
         public string GetButtonId()
         {
             return buttonId;

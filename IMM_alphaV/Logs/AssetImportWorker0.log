@@ -40358,3 +40358,94 @@ Start importing Assets/animal_people_wolf_1.prefab using Guid(33cc7075490f68e3c8
  -> (artifact id: 'd675189738158e5eb7e8eaa64525e0f9') in 0.000685 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 537.844209 seconds.
+  path: Assets/PressEcollision.cs
+  artifactKey: Guid(40dee644eb6e1de07b4c07aee77436ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PressEcollision.cs using Guid(40dee644eb6e1de07b4c07aee77436ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '5bd2f1ca39a086078ae9d3a3b1605dc3') in 0.000952 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.675 seconds
+Native extension for LinuxStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.342 seconds
+Domain Reload Profiling: 2017ms
+	BeginReloadAssembly (238ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (7ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (100ms)
+	RebuildCommonClasses (56ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (45ms)
+	LoadAllAssembliesAndSetupDomain (320ms)
+		LoadAssemblies (390ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (20ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (1344ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (819ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (12ms)
+			SetLoadedEditorAssemblies (13ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (96ms)
+			ProcessInitializeOnLoadAttributes (630ms)
+			ProcessInitializeOnLoadMethodAttributes (58ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (1ms)
+		AwakeInstancesAfterBackupRestoration (10ms)
+Callback registration failed. Increase kMaxCallback.
+Fatal Error! Callback registration failed. Increase kMaxCallback.
+Caught fatal signal - signo:6 code:-6 errno:0 addr:0x3e800084261
+Obtained 33 stack frames.
+#0  0x007f22f44c9d00 in __sigaction
+#1  0x007f22f4522664 in __pthread_kill_implementation
+#2  0x007f22f44c9c4e in gsignal
+#3  0x007f22f44b1902 in abort
+#4  0x0055b02c9fb866 in CrashDontLaunchBugReporter()
+#5  0x0055b02c2dc9bd in EditorMonoConsole::LogToConsoleImplementation(CppLogEntry&)
+#6  0x0055b02c2dc44a in EditorMonoConsole::LogToConsoleImplementation(DebugStringToFileData const&)
+#7  0x0055b02c2ddfa8 in LogToConsoleImplementation(DebugStringToFileData const&)
+#8  0x0055b02d1d5418 in DebugStringToFilePostprocessedStacktrace(DebugStringToFileData const&)
+#9  0x0055b02d1d5f8b in DebugStringToFile(DebugStringToFileData const&)
+#10 0x0055b02bd0ddda in CallbackArrayBase<void (*)(BuildTargetPlatform), void (*)(void const*, BuildTargetPlatform)>::Register(void (*)(BuildTargetPlatform), void (*)(void const*, BuildTargetPlatform), void const*)
+#11 0x0055b02c845fd3 in LoadDomainAndUserAssemblies(AssemblyLoadReason)
+#12 0x0055b02cdc30ca in WorkerDomainReloadV2()
+#13 0x0055b02ce30590 in AssetImportWorkerClient::ReloadMonoDomain(AssetResolver&)
+#14 0x0055b02ce394bb in core::mutable_function<void ()>::DispatchT<IOService::PostHelper<AssetImportWorkerClient::HandleMessage(PrepareMessage const&)::$_4>(AssetImportWorkerClient::HandleMessage(PrepareMessage const&)::$_4&&, IOService::WrapCallableInFunctionTag)::{lambda()#1}>::Dispatch()
+#15 0x0055b02ce77884 in asio::detail::completion_handler<core::mutable_function<void ()>, asio::io_context::basic_executor_type<std::allocator<void>, 0u> >::do_complete(void*, asio::detail::scheduler_operation*, std::error_code const&, unsigned long)
+#16 0x0055b02ce58aa7 in asio::detail::scheduler::do_run_one(asio::detail::conditionally_enabled_mutex::scoped_lock&, asio::detail::scheduler_thread_info&, std::error_code const&)
+#17 0x0055b02ce585a1 in asio::detail::scheduler::run(std::error_code&)
+#18 0x0055b02ce5cd4a in asio::io_context::run()
+#19 0x0055b02ce5ccea in IOService::Run(bool)
+#20 0x0055b02ce2c963 in AssetImportWorkerClient::Run()
+#21 0x0055b02cdc8a25 in RunAssetImporterV2()
+#22 0x0055b02c47e234 in Application::InitializeProject()
+#23 0x0055b02ca1a9ba in InitializeUnity(void*)
+#24 0x007f22f6b460d9 in g_main_loop_run
+#25 0x007f22f6b3fe8c in g_main_context_prepare
+#26 0x007f22f6ba1c98 in g_hmac_get_string
+#27 0x007f22f6b45f37 in g_main_loop_run
+#28 0x007f22f35efb35 in gtk_main
+#29 0x0055b02ca1a155 in main
+#30 0x007f22f44b3088 in __libc_start_call_main
+#31 0x007f22f44b314b in __libc_start_main
+#32 0x0055b02aa62029 in _start

@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class CustomerOrder : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // If Start and Update are not used, they can be removed
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // void Start()
+    // {
+    // }
+
+    // void Update()
+    // {
+    // }
 }

@@ -12,10 +12,7 @@ public class TextHide : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 
-        text.text = "";
-        text.enabled = false;
-        pressE.text = "";
-        pressE.enabled = false;
+        HideAllText();
     }
 
     // Method to show text
@@ -48,9 +45,18 @@ public class TextHide : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void HideAllText()
     {
-        
+        if(text != null)
+        {
+            text.text = "";
+            text.enabled = false;
+        }
+
+        if(pressE != null)
+        {
+            pressE.text = "";
+            pressE.enabled = false;
+        }
     }
 }
